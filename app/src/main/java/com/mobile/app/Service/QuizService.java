@@ -1,6 +1,6 @@
 package com.mobile.app.Service;
 
-import com.mobile.app.Model.quiz;
+import com.mobile.app.Model.Quiz;
 import com.mobile.app.Repository.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,15 +16,15 @@ public class QuizService {
         this.quizRepository = quizRepository;
     }
 
-    public List<quiz> getAllQuizzes() {
+    public List<Quiz> getAllQuizzes() {
         return quizRepository.findAll();
     }
 
-    public quiz getQuizById(Long quizId) {
+    public Quiz getQuizById(Long quizId) {
         return quizRepository.findById(quizId).orElse(null);
     }
 
-    public quiz saveQuiz(quiz quiz) {
+    public Quiz saveQuiz(Quiz quiz) {
         return quizRepository.save(quiz);
     }
 

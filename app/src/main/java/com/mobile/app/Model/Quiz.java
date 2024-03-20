@@ -6,18 +6,19 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class quiz {
+public class Quiz {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long quizId; // Using Long for ID to handle auto-generated values
 
     private String quizName;
+
     private int totalMarks;
 
-    public quiz() {
+    public Quiz() {
     }
 
-    public quiz(Long quizId, String quizName, int totalMarks) {
+    public Quiz(Long quizId, String quizName, int totalMarks) {
         this.quizId = quizId;
         this.quizName = quizName;
         this.totalMarks = totalMarks;
