@@ -1,8 +1,9 @@
 package com.mobile.app.Controller;
 
-
 import com.mobile.app.Model.Question;
+import com.mobile.app.Model.Quiz;
 import com.mobile.app.Service.QuestionService;
+import com.mobile.app.Service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +16,12 @@ import java.util.List;
 public class QuestionController {
 
     private final QuestionService questionService;
+    private final QuizService quizService;
 
     @Autowired
-    public QuestionController(QuestionService questionService) {
+    public QuestionController(QuestionService questionService, QuizService quizService) {
         this.questionService = questionService;
+        this.quizService = quizService;
     }
 
     @GetMapping
@@ -36,6 +39,12 @@ public class QuestionController {
 
     @PostMapping("/save")
     public ResponseEntity<Question> createQuestion(@RequestBody Question question) {
+        Long quizId = question.getQuiz().getQuizId(); // Assuming getQuizId() method exists in Quiz entity
+        Quiz quiz = quizService.getQuizById(quizId);
+        if (quiz == null) {
+            return ResponseEntity.badRequest().build(); // Handle case where quiz is not found
+        }
+        question.setQuiz(quiz);
         Question savedQuestion = questionService.saveQuestion(question);
         return new ResponseEntity<>(savedQuestion, HttpStatus.CREATED);
     }
@@ -45,7 +54,7 @@ public class QuestionController {
         if (!questionService.getQuestionById(id).isPresent()) {
             return ResponseEntity.notFound().build();
         }
-        question.setQuestionID(id);
+        question.setQuestionId(id);
         Question updatedQuestion = questionService.saveQuestion(question);
         return ResponseEntity.ok(updatedQuestion);
     }
