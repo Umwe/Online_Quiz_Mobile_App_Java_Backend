@@ -41,6 +41,8 @@ public class QuizController {
         return new ResponseEntity<>(newQuiz.getQuizId(), HttpStatus.CREATED);
     }
 
+
+
     @PutMapping("/update/{quizId}")
     public ResponseEntity<Quiz> updateQuiz(@PathVariable Long quizId, @RequestBody Quiz updatedQuiz) {
         Quiz existingQuiz = quizService.getQuizById(quizId);
