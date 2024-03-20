@@ -46,6 +46,8 @@ public class QuestionController {
         }
         question.setQuiz(quiz);
         Question savedQuestion = questionService.saveQuestion(question);
+
+        // Include the saved question ID in the response
         return new ResponseEntity<>(savedQuestion, HttpStatus.CREATED);
     }
 

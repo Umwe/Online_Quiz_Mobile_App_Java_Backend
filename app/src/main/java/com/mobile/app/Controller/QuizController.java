@@ -21,8 +21,8 @@ public class QuizController {
 
     @GetMapping(("/listquiz"))
     public ResponseEntity<List<Quiz>> getAllQuizzes() {
-        List<Quiz> Quizzes = quizService.getAllQuizzes();
-        return new ResponseEntity<>(Quizzes, HttpStatus.OK);
+        List<Quiz> quizzes = quizService.getAllQuizzes();
+        return new ResponseEntity<>(quizzes, HttpStatus.OK);
     }
 
     @GetMapping("/listquiz/{quizId}")
@@ -36,9 +36,9 @@ public class QuizController {
     }
 
     @PostMapping("/savequiz")
-    public ResponseEntity<Quiz> createQuiz(@RequestBody Quiz quiz) {
+    public ResponseEntity<Long> createQuiz(@RequestBody Quiz quiz) {
         Quiz newQuiz = quizService.saveQuiz(quiz);
-        return new ResponseEntity<>(newQuiz, HttpStatus.CREATED);
+        return new ResponseEntity<>(newQuiz.getQuizId(), HttpStatus.CREATED);
     }
 
     @PutMapping("/update/{quizId}")
