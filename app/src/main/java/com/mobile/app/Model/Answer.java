@@ -15,20 +15,33 @@ public class Answer {
     @JoinColumn(name = "QuestionID")
     private Question question;
 
-    @Column(name = "AnswerText", columnDefinition = "TEXT")
-    private String answerText;
 
-    @Column(name = "IsCorrect")
-    private boolean correct;
+    @Column(name = "OptionA")
+    private String optionA;
+
+    @Column(name = "OptionB")
+    private String optionB;
+
+    @Column(name = "OptionC")
+    private String optionC;
+
+    @Column(name = "OptionD")
+    private String optionD;
+
+    @Column(name = "CorrectOptionIndex")
+    private int correctOptionIndex;
 
     public Answer() {
     }
 
-    public Answer(int answerId, Question question, String answerText, boolean correct) {
+    public Answer(int answerId, Question question, String optionA, String optionB, String optionC, String optionD, int correctOptionIndex) {
         this.answerId = answerId;
         this.question = question;
-        this.answerText = answerText;
-        this.correct = correct;
+        this.optionA = optionA;
+        this.optionB = optionB;
+        this.optionC = optionC;
+        this.optionD = optionD;
+        this.correctOptionIndex = correctOptionIndex;
     }
 
     public int getAnswerId() {
@@ -47,19 +60,43 @@ public class Answer {
         this.question = question;
     }
 
-    public String getAnswerText() {
-        return answerText;
+    public String getOptionA() {
+        return optionA;
     }
 
-    public void setAnswerText(String answerText) {
-        this.answerText = answerText;
+    public void setOptionA(String optionA) {
+        this.optionA = optionA;
     }
 
-    public boolean isCorrect() {
-        return correct;
+    public String getOptionB() {
+        return optionB;
     }
 
-    public void setCorrect(boolean correct) {
-        this.correct = correct;
+    public void setOptionB(String optionB) {
+        this.optionB = optionB;
+    }
+
+    public String getOptionC() {
+        return optionC;
+    }
+
+    public void setOptionC(String optionC) {
+        this.optionC = optionC;
+    }
+
+    public String getOptionD() {
+        return optionD;
+    }
+
+    public void setOptionD(String optionD) {
+        this.optionD = optionD;
+    }
+
+    public int getCorrectOptionIndex() {
+        return correctOptionIndex;
+    }
+
+    public void setCorrectOptionIndex(int correctOptionIndex) {
+        this.correctOptionIndex = correctOptionIndex;
     }
 }

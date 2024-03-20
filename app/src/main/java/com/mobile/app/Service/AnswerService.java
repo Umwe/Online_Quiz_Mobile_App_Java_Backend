@@ -39,8 +39,11 @@ public class AnswerService {
         if (existingAnswerOptional.isPresent()) {
             Answer existingAnswer = existingAnswerOptional.get();
             existingAnswer.setQuestion(updatedAnswer.getQuestion());
-            existingAnswer.setAnswerText(updatedAnswer.getAnswerText());
-            existingAnswer.setCorrect(updatedAnswer.isCorrect());
+            existingAnswer.setOptionA(updatedAnswer.getOptionA());
+            existingAnswer.setOptionB(updatedAnswer.getOptionB());
+            existingAnswer.setOptionC(updatedAnswer.getOptionC());
+            existingAnswer.setOptionD(updatedAnswer.getOptionD());
+            existingAnswer.setCorrectOptionIndex(updatedAnswer.getCorrectOptionIndex());
             return answerRepository.save(existingAnswer);
         } else {
             throw new RuntimeException("Answer not found with id: " + id);
