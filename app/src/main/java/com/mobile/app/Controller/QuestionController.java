@@ -9,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/question")
@@ -38,7 +40,7 @@ public class QuestionController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Question> createQuestion(@RequestBody Question question) {
+    public ResponseEntity<Map<String, Object>> createQuestion(@RequestBody Question question) {
         Quiz quiz = question.getQuiz(); // Get the quiz object from the question
         if (quiz == null) {
             return ResponseEntity.badRequest().build(); // Handle case where quiz is not provided
@@ -55,8 +57,12 @@ public class QuestionController {
         Question savedQuestion = questionService.saveQuestion(question);
 
         // Include the saved question ID in the response
-        return new ResponseEntity<>(savedQuestion, HttpStatus.CREATED);
+        Map<String, Object> responseData = new HashMap<>();
+        responseData.put("questionId", savedQuestion.getQuestionId()); // Assuming getId() method exists in Question entity
+        responseData.put("question", savedQuestion);
+        return ResponseEntity.ok(responseData);
     }
+
 
 
     @PutMapping("/update/{id}")
