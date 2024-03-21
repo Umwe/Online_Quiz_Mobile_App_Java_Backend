@@ -39,17 +39,25 @@ public class QuestionController {
 
     @PostMapping("/save")
     public ResponseEntity<Question> createQuestion(@RequestBody Question question) {
-        Long quizId = question.getQuiz().getQuizId(); // Assuming getQuizId() method exists in Quiz entity
-        Quiz quiz = quizService.getQuizById(quizId);
+        Quiz quiz = question.getQuiz(); // Get the quiz object from the question
         if (quiz == null) {
+            return ResponseEntity.badRequest().build(); // Handle case where quiz is not provided
+        }
+
+        Long quizId = quiz.getQuizId(); // Assuming getQuizId() method exists in Quiz entity
+        Quiz retrievedQuiz = quizService.getQuizById(quizId);
+        if (retrievedQuiz == null) {
             return ResponseEntity.badRequest().build(); // Handle case where quiz is not found
         }
-        question.setQuiz(quiz);
+
+        // Set the retrieved quiz object for the question
+        question.setQuiz(retrievedQuiz);
         Question savedQuestion = questionService.saveQuestion(question);
 
         // Include the saved question ID in the response
         return new ResponseEntity<>(savedQuestion, HttpStatus.CREATED);
     }
+
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Question> updateQuestion(@PathVariable int id, @RequestBody Question question) {
