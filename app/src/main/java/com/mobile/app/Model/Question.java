@@ -1,6 +1,5 @@
 package com.mobile.app.Model;
 
-
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -14,8 +13,8 @@ public class Question {
     @Column(name = "QuestionID")
     private int questionId;
 
-    @ManyToOne
-    @JoinColumn(name = "QuizID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "QuizID", nullable = false)
     private Quiz quiz;
 
     @Column(name = "QuestionText", columnDefinition = "TEXT")
@@ -24,9 +23,11 @@ public class Question {
     @Column(name = "Marks")
     private int marks;
 
-
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Answer> answers;
+
+    // Constructors, getters, and setters
+
 
     public Question() {
     }
@@ -78,9 +79,4 @@ public class Question {
     public void setAnswers(List<Answer> answers) {
         this.answers = answers;
     }
-
-    public void setQuestionID(int id) {
-    }
 }
-
-
