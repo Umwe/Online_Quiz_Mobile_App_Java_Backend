@@ -12,7 +12,7 @@ public class Question {
     @Column(name = "QuestionID")
     private int questionId;
 
-    @ManyToOne(cascade = CascadeType.REMOVE) // Add cascade option here
+    @ManyToOne
     @JoinColumn(name = "QuizID")
     private Quiz quiz;
 
@@ -22,8 +22,11 @@ public class Question {
     @Column(name = "Marks")
     private int marks;
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Answer> answers;
+
+    // Constructors, getters, setters
+
 
     public Question() {
     }
@@ -35,9 +38,6 @@ public class Question {
         this.marks = marks;
         this.answers = answers;
     }
-
-    // Getters and setters
-
 
     public int getQuestionId() {
         return questionId;
@@ -79,3 +79,4 @@ public class Question {
         this.answers = answers;
     }
 }
+

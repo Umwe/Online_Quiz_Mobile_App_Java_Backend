@@ -1,27 +1,32 @@
 package com.mobile.app.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Quiz {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long quizId; // Using Long for ID to handle auto-generated values
+    private Long quizId;
 
     private String quizName;
-
     private int totalMarks;
+
+    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Question> questions;
+
+    // Constructors, getters, setters
+
 
     public Quiz() {
     }
 
-    public Quiz(Long quizId, String quizName, int totalMarks) {
+    public Quiz(Long quizId, String quizName, int totalMarks, List<Question> questions) {
         this.quizId = quizId;
         this.quizName = quizName;
         this.totalMarks = totalMarks;
+        this.questions = questions;
     }
 
     public Long getQuizId() {
@@ -46,5 +51,13 @@ public class Quiz {
 
     public void setTotalMarks(int totalMarks) {
         this.totalMarks = totalMarks;
+    }
+
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
     }
 }
