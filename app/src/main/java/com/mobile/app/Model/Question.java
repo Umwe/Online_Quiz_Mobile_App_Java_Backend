@@ -1,7 +1,6 @@
 package com.mobile.app.Model;
 
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
@@ -13,8 +12,8 @@ public class Question {
     @Column(name = "QuestionID")
     private int questionId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "QuizID", nullable = false)
+    @ManyToOne(cascade = CascadeType.REMOVE) // Add cascade option here
+    @JoinColumn(name = "QuizID")
     private Quiz quiz;
 
     @Column(name = "QuestionText", columnDefinition = "TEXT")
@@ -23,11 +22,8 @@ public class Question {
     @Column(name = "Marks")
     private int marks;
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     private List<Answer> answers;
-
-    // Constructors, getters, and setters
-
 
     public Question() {
     }
@@ -39,6 +35,9 @@ public class Question {
         this.marks = marks;
         this.answers = answers;
     }
+
+    // Getters and setters
+
 
     public int getQuestionId() {
         return questionId;
