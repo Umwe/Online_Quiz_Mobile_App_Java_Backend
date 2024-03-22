@@ -22,7 +22,7 @@ public class Question {
     @Column(name = "Marks")
     private int marks;
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Answer> answers;
 
     public Question() {

@@ -11,10 +11,9 @@ public class Answer {
     @Column(name = "AnswerID")
     private int answerId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE) // Add cascade option here
     @JoinColumn(name = "QuestionID")
     private Question question;
-
 
     @Column(name = "OptionA")
     private String optionA;
@@ -43,6 +42,9 @@ public class Answer {
         this.optionD = optionD;
         this.correctOptionIndex = correctOptionIndex;
     }
+
+    // Getters and setters
+
 
     public int getAnswerId() {
         return answerId;
