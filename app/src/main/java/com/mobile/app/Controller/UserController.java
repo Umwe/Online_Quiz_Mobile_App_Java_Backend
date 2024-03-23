@@ -21,7 +21,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping
+    @GetMapping("listall")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> userList = userService.getAllUsers();
         return new ResponseEntity<>(userList, HttpStatus.OK);
