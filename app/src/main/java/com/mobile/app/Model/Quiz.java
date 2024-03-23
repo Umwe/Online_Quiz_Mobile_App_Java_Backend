@@ -1,5 +1,6 @@
 package com.mobile.app.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public class Quiz {
     private int totalMarks;
 
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore // Add this annotation to ignore serialization of questions in the Quiz entity
     private List<Question> questions;
 
     // Constructors, getters, setters
