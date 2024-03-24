@@ -16,6 +16,10 @@ public class AuthResponse {
         this.id = id;
     }
 
+    public AuthResponse(User user, int role) {
+
+    }
+
     public User getUser() {
         return user;
     }
