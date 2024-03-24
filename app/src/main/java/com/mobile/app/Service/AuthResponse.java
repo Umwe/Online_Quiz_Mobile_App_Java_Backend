@@ -5,19 +5,13 @@ import com.mobile.app.Model.User;
 public class AuthResponse {
     private User user;
     private int role;
-    private long id; // Add user ID field
 
     public AuthResponse() {
     }
 
-    public AuthResponse(User user, int role, long id) {
+    public AuthResponse(User user, int role) {
         this.user = user;
         this.role = role;
-        this.id = id;
-    }
-
-    public AuthResponse(User user, int role) {
-
     }
 
     public User getUser() {
@@ -34,13 +28,5 @@ public class AuthResponse {
 
     public void setRole(int role) {
         this.role = role;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 }

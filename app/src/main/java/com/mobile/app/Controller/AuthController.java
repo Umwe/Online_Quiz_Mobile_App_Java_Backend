@@ -22,12 +22,17 @@ public class AuthController {
     public ResponseEntity<?> login(@RequestBody UserLoginRequest request) {
         AuthResponse authResponse = authService.authenticateUser(request.getUsername(), request.getPassword());
         if (authResponse != null) {
-            long userId = authResponse.getId(); // Retrieve user ID
             User user = authResponse.getUser();
             int role = authResponse.getRole();
 
-            // Send response with user ID
-            return ResponseEntity.ok("Login successful with userID: " + userId);
+            // Redirect based on user's role
+            if (role == 1) {
+                // Redirect admin to admin dashboard
+                return ResponseEntity.ok("Redirect to admin dashboard");
+            } else if (role == 2) {
+                // Redirect user to user dashboard
+                return ResponseEntity.ok("Redirect to user dashboard");
+            }
         }
         // Authentication failed or invalid credentials
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");

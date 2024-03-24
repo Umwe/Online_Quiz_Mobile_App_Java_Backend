@@ -15,7 +15,7 @@ public class AuthServiceImpl implements AuthService {
     public AuthResponse authenticateUser(String username, String password) {
         User user = userRepository.findByUsername(username);
         if (user != null && user.getPassword().equals(password)) {
-            // Authentication successful, return AuthResponse with user and role
+            // Authentication successful, return user details and role
             return new AuthResponse(user, user.getRole());
         }
         return null; // Authentication failed
