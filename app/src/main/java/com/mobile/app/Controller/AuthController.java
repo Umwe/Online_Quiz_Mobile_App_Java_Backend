@@ -22,7 +22,7 @@ public class AuthController {
     public ResponseEntity<?> login(@RequestBody UserLoginRequest request) {
         AuthResponse authResponse = authService.authenticateUser(request.getUsername(), request.getPassword());
         if (authResponse != null) {
-            long userId = authResponse.getUserId(); // Retrieve user ID
+            long userId = authResponse.getId(); // Retrieve user ID
             User user = authResponse.getUser();
             int role = authResponse.getRole();
 
