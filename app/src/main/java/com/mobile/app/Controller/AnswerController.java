@@ -27,12 +27,26 @@ public class AnswerController {
         return ResponseEntity.ok(answers);
     }
 
+
     @GetMapping("/list/{id}")
     public ResponseEntity<Answer> getAnswerById(@PathVariable("id") int id) {
         Optional<Answer> answerOptional = answerService.getAnswerById(id);
         return answerOptional.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+
+
+    @GetMapping("/listbyquestion/{questionId}")
+    public ResponseEntity<Answer> getAnswerByQuestionId(@PathVariable int questionId) {
+        Optional<Answer> answerOptional = answerService.getAnswerByQuestionId(questionId);
+        if (answerOptional.isPresent()) {
+            return ResponseEntity.ok(answerOptional.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
     @PostMapping("/save")
     public ResponseEntity<Answer> createAnswer(@RequestBody Answer answer) {

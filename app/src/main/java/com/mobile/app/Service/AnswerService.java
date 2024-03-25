@@ -50,5 +50,9 @@ public class AnswerService {
         }
     }
 
+    public Optional<Answer> getAnswerByQuestionId(int questionId) {
+        return answerRepository.findByQuestionId(questionId);
+    }
+
     // You can add more service methods here as needed
 }
