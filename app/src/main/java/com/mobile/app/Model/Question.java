@@ -3,8 +3,10 @@ package com.mobile.app.Model;
 import jakarta.persistence.*;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name = "Questions")
+@Table(name = "questions")
 public class Question {
 
     @Id
@@ -22,11 +24,9 @@ public class Question {
     @Column(name = "Marks")
     private int marks;
 
+    @JsonIgnore // Add this annotation to ignore serialization of answers
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Answer> answers;
-
-    // Constructors, getters, setters
-
 
     public Question() {
     }
@@ -78,5 +78,7 @@ public class Question {
     public void setAnswers(List<Answer> answers) {
         this.answers = answers;
     }
-}
 
+
+    // getters and setters
+}

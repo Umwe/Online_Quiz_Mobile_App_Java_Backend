@@ -26,7 +26,7 @@ public class QuestionController {
         this.quizService = quizService;
     }
 
-    @GetMapping
+    @GetMapping("/listall")
     public ResponseEntity<List<Question>> getAllQuestions() {
         List<Question> questions = questionService.getAllQuestions();
         return ResponseEntity.ok(questions);
