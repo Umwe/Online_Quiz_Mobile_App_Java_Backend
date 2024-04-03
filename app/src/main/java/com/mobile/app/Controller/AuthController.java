@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.mobile.app.Model.User;
 
-
 @RestController
 public class AuthController {
 
@@ -25,16 +24,21 @@ public class AuthController {
             User user = authResponse.getUser();
             int role = authResponse.getRole();
 
-            // Redirect based on user's role
+            // Construct JSON response
+            String jsonResponse;
             if (role == 1) {
                 // Redirect admin to admin dashboard
-                return ResponseEntity.ok("Redirect to admin dashboard");
+                jsonResponse = "{\"message\": \"Redirect to admin dashboard\"}";
             } else if (role == 2) {
                 // Redirect user to user dashboard
-                return ResponseEntity.ok("Redirect to user dashboard");
+                jsonResponse = "{\"message\": \"Redirect to user dashboard\"}";
+            } else {
+                // Role not recognized
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Role not recognized");
             }
+            return ResponseEntity.ok(jsonResponse);
         }
         // Authentication failed or invalid credentials
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"error\": \"Invalid credentials\"}");
     }
 }
