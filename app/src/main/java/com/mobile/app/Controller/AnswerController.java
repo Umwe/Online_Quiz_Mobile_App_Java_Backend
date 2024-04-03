@@ -35,19 +35,6 @@ public class AnswerController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-
-
-    @GetMapping("/listbyquestion/{questionId}")
-    public ResponseEntity<Answer> getAnswerByQuestionId(@PathVariable int questionId) {
-        Optional<Answer> answerOptional = answerService.getAnswerByQuestionId(questionId);
-        if (answerOptional.isPresent()) {
-            return ResponseEntity.ok(answerOptional.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-
     @PostMapping("/save")
     public ResponseEntity<Answer> createAnswer(@RequestBody Answer answer) {
         Answer createdAnswer = answerService.saveAnswer(answer);
@@ -70,5 +57,13 @@ public class AnswerController {
         return ResponseEntity.noContent().build();
     }
 
-    // You can add more controller methods here as needed
+    @GetMapping("/listbyquestion/{questionId}")
+    public List<Answer> getAnswersByQuestionId(@PathVariable int questionId) {
+        return answerService.getAnswersByQuestionId(questionId);
+    }
+
+
 }
+
+
+    // You can add more controller methods here as neede

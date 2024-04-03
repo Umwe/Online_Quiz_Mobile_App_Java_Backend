@@ -24,14 +24,15 @@ public class AuthController {
         if (authResponse != null) {
             User user = authResponse.getUser();
             int role = authResponse.getRole();
+            long userId = user.getId(); // Assuming User class has a getId() method
 
             // Redirect based on user's role
             if (role == 1) {
                 // Redirect admin to admin dashboard
-                return ResponseEntity.ok("Redirect to admin dashboard");
+                return ResponseEntity.ok("Redirect to admin dashboard. User ID: " + userId);
             } else if (role == 2) {
                 // Redirect user to user dashboard
-                return ResponseEntity.ok("Redirect to user dashboard");
+                return ResponseEntity.ok("Redirect to user dashboard. User ID: " + userId);
             }
         }
         // Authentication failed or invalid credentials

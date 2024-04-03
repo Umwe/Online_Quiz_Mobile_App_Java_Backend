@@ -22,16 +22,20 @@ public class AnswerService {
         return answerRepository.findAll();
     }
 
-    public Optional<Answer> getAnswerById(int id) {
-        return answerRepository.findById(id);
+    public Optional<Answer> getAnswerById(int answerId) {
+        return answerRepository.findById(answerId);
+    }
+
+    public List<Answer> getAnswersByQuestionId(int questionId) {
+        return answerRepository.findByQuestionId(questionId);
     }
 
     public Answer saveAnswer(Answer answer) {
         return answerRepository.save(answer);
     }
 
-    public void deleteAnswer(int id) {
-        answerRepository.deleteById(id);
+    public void deleteAnswer(int answerId) {
+        answerRepository.deleteById(answerId);
     }
 
     public Answer updateAnswer(int id, Answer updatedAnswer) {
@@ -50,9 +54,7 @@ public class AnswerService {
         }
     }
 
-    public Optional<Answer> getAnswerByQuestionId(int questionId) {
-        return answerRepository.findByQuestionId(questionId);
-    }
 
-    // You can add more service methods here as needed
+
+
 }
