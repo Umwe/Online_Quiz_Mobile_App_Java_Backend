@@ -66,6 +66,12 @@ public class QuizController {
         return new ResponseEntity<>(totalQuestions, HttpStatus.OK);
     }
 
+    @GetMapping("/totalMarks/{quizId}")
+    public ResponseEntity<Integer> getTotalMarksForQuiz(@PathVariable Long quizId) {
+        int totalMarks = quizService.getTotalMarksByQuizId(quizId);
+        return new ResponseEntity<>(totalMarks, HttpStatus.OK);
+    }
+
 
 
 

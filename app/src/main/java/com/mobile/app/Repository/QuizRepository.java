@@ -11,4 +11,7 @@ public interface QuizRepository extends JpaRepository<Quiz, Long> {
     @Query("SELECT COUNT(q) FROM Quiz q JOIN q.questions ques WHERE q.quizId = :quizId")
     int countQuestionsByQuizId(@Param("quizId") Long quizId);
 
+    @Query("SELECT q.totalMarks FROM Quiz q WHERE q.quizId = :quizId")
+    int findTotalMarksByQuizId(Long quizId);
+
 }
