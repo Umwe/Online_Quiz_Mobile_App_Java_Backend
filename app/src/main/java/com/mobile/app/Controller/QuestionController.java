@@ -84,9 +84,12 @@ public class QuestionController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/listByQuiz/{quizId}")
-    public ResponseEntity<List<Question>> getQuestionsByQuizIdWithAnswers(@PathVariable int quizId) {
-        List<Question> questions = questionService.getQuestionsByQuizIdWithAnswers(quizId);
+    @GetMapping("/listbyquiz/{quizId}")
+    public ResponseEntity<List<Question>> getQuestionsByQuizId(@PathVariable int quizId) {
+        List<Question> questions = questionService.getQuestionsByQuizId(quizId);
+        if (questions.isEmpty()) {
+            return ResponseEntity.notFound().build(); // No questions found for the specified quiz ID
+        }
         return ResponseEntity.ok(questions);
     }
 }
