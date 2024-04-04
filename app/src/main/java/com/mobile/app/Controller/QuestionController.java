@@ -83,4 +83,10 @@ public class QuestionController {
         questionService.deleteQuestionById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/listByQuiz/{quizId}")
+    public ResponseEntity<List<Question>> getQuestionsByQuizIdWithAnswers(@PathVariable int quizId) {
+        List<Question> questions = questionService.getQuestionsByQuizIdWithAnswers(quizId);
+        return ResponseEntity.ok(questions);
+    }
 }

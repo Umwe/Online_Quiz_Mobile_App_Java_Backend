@@ -36,5 +36,9 @@ public class QuestionService {
         questionRepository.deleteById(id);
     }
 
+    public List<Question> getQuestionsByQuizIdWithAnswers(int quizId) {
+        return questionRepository.findByQuizIdWithAnswers(quizId);
+    }
+
     // You can add more business logic methods as needed
 }

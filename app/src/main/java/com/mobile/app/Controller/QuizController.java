@@ -60,4 +60,13 @@ public class QuizController {
         quizService.deleteQuiz(quizId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    @GetMapping("/totalQuestions/{quizId}")
+    public ResponseEntity<Integer> getTotalQuestionsForQuiz(@PathVariable Long quizId) {
+        int totalQuestions = quizService.getTotalQuestionsForQuiz(quizId);
+        return new ResponseEntity<>(totalQuestions, HttpStatus.OK);
+    }
+
+
+
+
 }

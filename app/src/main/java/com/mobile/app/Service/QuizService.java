@@ -31,4 +31,8 @@ public class QuizService {
     public void deleteQuiz(Long quizId) {
         quizRepository.deleteById(quizId);
     }
+
+    public int getTotalQuestionsForQuiz(Long quizId) {
+        return quizRepository.countQuestionsByQuizId(quizId);
+    }
 }
