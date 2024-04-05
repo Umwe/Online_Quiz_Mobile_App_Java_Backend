@@ -28,10 +28,10 @@ public class AuthController {
             String jsonResponse;
             if (role == 1) {
                 // Redirect admin to admin dashboard
-                jsonResponse = "{\"message\": \"Redirect to admin dashboard\"}";
+                jsonResponse = "{\"message\": \"Redirect to admin dashboard\", \"user_id\": " + user.getId() + ", \"username\": \"" + user.getUsername() + "\"}";
             } else if (role == 2) {
                 // Redirect user to user dashboard
-                jsonResponse = "{\"message\": \"Redirect to user dashboard\"}";
+                jsonResponse = "{\"message\": \"Redirect to user dashboard\", \"user_id\": " + user.getId() + ", \"username\": \"" + user.getUsername() + "\"}";
             } else {
                 // Role not recognized
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Role not recognized");

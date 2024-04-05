@@ -11,6 +11,7 @@ public class Quiz {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long quizId;
 
+
     private String quizName;
     private int totalMarks;
 
