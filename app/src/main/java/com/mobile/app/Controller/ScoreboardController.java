@@ -78,4 +78,6 @@ public class ScoreboardController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
 }
+

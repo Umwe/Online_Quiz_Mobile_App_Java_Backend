@@ -47,13 +47,6 @@ public class ScoreboardService {
         return scoreboardRepository.findByQuizId(quizId);
     }
 
-    public scoreboard findByUserName(String username) {
-        return scoreboardRepository.findByUserName(username);
-    }
-
-    public scoreboard findByquizName(String quizName) {
-        return scoreboardRepository.findByquizName(quizName);
-    }
 
     // Get all scoreboards
     public List<scoreboard> getAllScoreboards() {

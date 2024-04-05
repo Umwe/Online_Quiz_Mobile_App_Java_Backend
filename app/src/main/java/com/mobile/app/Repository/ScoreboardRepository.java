@@ -11,7 +11,4 @@ public interface ScoreboardRepository extends JpaRepository<scoreboard, Long> {
     // Custom query method to find scoreboard by quizId
     scoreboard findByQuizId(int quizId);
 
-    scoreboard findByUserName(String username);
-
-    scoreboard findByquizName(String quizName);
 }
