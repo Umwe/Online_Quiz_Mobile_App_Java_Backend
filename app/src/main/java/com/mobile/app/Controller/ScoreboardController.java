@@ -59,10 +59,10 @@ public class ScoreboardController {
 
     // Custom query method to find scoreboard by userid
     @GetMapping("/listbyuser/{userid}")
-    public ResponseEntity<scoreboard> findByUserid(@PathVariable int userid) {
-        scoreboard scoreboard = scoreboardService.findByUserid(userid);
-        if (scoreboard != null) {
-            return new ResponseEntity<>(scoreboard, HttpStatus.OK);
+    public ResponseEntity<List<scoreboard>> findByUserid(@PathVariable int userid) {
+        List<scoreboard> scoreboards = scoreboardService.findAllByUserid(userid);
+        if (!scoreboards.isEmpty()) {
+            return new ResponseEntity<>(scoreboards, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

@@ -52,4 +52,9 @@ public class ScoreboardService {
     public List<scoreboard> getAllScoreboards() {
         return scoreboardRepository.findAll();
     }
+
+
+    public List<scoreboard> findAllByUserid(int userid) {
+        return scoreboardRepository.findAllByUserid(userid);
+    }
 }
