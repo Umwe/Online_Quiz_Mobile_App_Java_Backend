@@ -20,6 +20,8 @@ public class User {
     private String phonenumber;
 
     private String email;
+
+    private String gender;
     private String password;
 
     private int role;
@@ -27,12 +29,13 @@ public class User {
     public User() {
     }
 
-    public User(long id, String fullnames, String username, String phonenumber, String email, String password, int role) {
+    public User(long id, String fullnames, String username, String phonenumber, String email, String gender, String password, int role) {
         this.id = id;
         this.fullnames = fullnames;
         this.username = username;
         this.phonenumber = phonenumber;
         this.email = email;
+        this.gender = gender;
         this.password = password;
         this.role = role;
     }
@@ -77,6 +80,14 @@ public class User {
         this.email = email;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -92,5 +103,4 @@ public class User {
     public void setRole(int role) {
         this.role = role;
     }
-
 }
