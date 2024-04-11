@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/call-data")
+@RequestMapping("/calldata")
 public class CallDataController {
     @Autowired
     private CallDataRepository callDataRepository;
 
-    @GetMapping("/all")
+    @GetMapping("/listall")
     public List<CallData> getAllCallData() {
         return callDataRepository.findAll();
     }
