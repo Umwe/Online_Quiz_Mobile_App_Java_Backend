@@ -47,13 +47,21 @@ public class QuizController {
     public ResponseEntity<Quiz> updateQuiz(@PathVariable Long quizId, @RequestBody Quiz updatedQuiz) {
         Quiz existingQuiz = quizService.getQuizById(quizId);
         if (existingQuiz != null) {
-            updatedQuiz.setQuizId(quizId); // Ensure the ID is set correctly
-            Quiz updated = quizService.saveQuiz(updatedQuiz);
+            // Update only the non-collection fields
+            existingQuiz.setQuizName(updatedQuiz.getQuizName());
+            existingQuiz.setTotalMarks(updatedQuiz.getTotalMarks());
+
+            // Optionally, handle the questions collection separately if needed
+            // existingQuiz.getQuestions().clear();
+            // existingQuiz.getQuestions().addAll(updatedQuiz.getQuestions());
+
+            Quiz updated = quizService.saveQuiz(existingQuiz);
             return new ResponseEntity<>(updated, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
 
     @DeleteMapping("/delete/{quizId}")
     public ResponseEntity<Void> deleteQuiz(@PathVariable Long quizId) {
