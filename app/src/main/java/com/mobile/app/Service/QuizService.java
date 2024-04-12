@@ -38,4 +38,8 @@ public class QuizService {
     public int getTotalMarksByQuizId(Long quizId) {
         return quizRepository.findTotalMarksByQuizId(quizId);
     }
+
+    public Quiz getQuizWithQuestionsAndAnswers(Long quizId) {
+        return quizRepository.findByIdWithQuestionsAndAnswers(quizId);
+    }
 }
