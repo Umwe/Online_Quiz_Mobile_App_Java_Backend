@@ -82,8 +82,8 @@ public class QuizController {
 
 
     @GetMapping("/listquizrel/{quizId}")
-    public ResponseEntity<Quiz> getQuizWithQuestionsAndAnswers(@PathVariable Long quizId) {
-        Quiz quiz = quizService.getQuizWithQuestionsAndAnswers(quizId);
+    public ResponseEntity<Quiz> getQuizWithQuestions(@PathVariable Long quizId) {
+        Quiz quiz = quizService.getQuizWithQuestions(quizId);
         if (quiz != null) {
             return ResponseEntity.ok(quiz);
         } else {

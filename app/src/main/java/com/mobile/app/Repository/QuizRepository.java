@@ -17,8 +17,4 @@ public interface QuizRepository extends JpaRepository<Quiz, Long> {
 
     @Query("SELECT q FROM Quiz q LEFT JOIN FETCH q.questions WHERE q.quizId = :quizId")
     Quiz findByIdWithQuestions(@Param("quizId") Long quizId);
-
-    @Query("SELECT q FROM Quiz q LEFT JOIN FETCH q.questions qs LEFT JOIN FETCH qs.answers WHERE q.quizId = :quizId")
-    Quiz findByIdWithQuestionsAndAnswers(@Param("quizId") Long quizId);
-
 }

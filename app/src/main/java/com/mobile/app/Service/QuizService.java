@@ -39,7 +39,7 @@ public class QuizService {
         return quizRepository.findTotalMarksByQuizId(quizId);
     }
 
-    public Quiz getQuizWithQuestionsAndAnswers(Long quizId) {
-        return quizRepository.findByIdWithQuestionsAndAnswers(quizId);
+    public Quiz getQuizWithQuestions(Long quizId) {
+        return quizRepository.findByIdWithQuestions(quizId);
     }
 }
